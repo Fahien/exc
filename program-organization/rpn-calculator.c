@@ -2,6 +2,7 @@
 // In the Reverse Polish Notation, operators are placed 
 // after their operands instead of between their operands.
 // RPN expressions can easily be evaluated using a stack
+//
 
 #include "int-stack.h"
 
