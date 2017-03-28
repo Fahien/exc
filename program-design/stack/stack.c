@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "stack.h"
 
 struct stack
@@ -50,6 +49,12 @@ bool is_empty(struct stack *s)
 bool is_full(struct stack *s)
 {
 	return s->top == s->capacity;
+}
+
+
+size_t size(struct stack *s)
+{
+	return s->top;
 }
 
 

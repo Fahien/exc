@@ -9,6 +9,8 @@ int main(void)
 	push(s1, 1);
 	push(s1, 2);
 
+	printf("s1 size is %lu\n", size(s1));
+
 	Item *n = pop(s1);
 	printf("Popped from s1: %d\n", *n);
 	n = pop(s1);
