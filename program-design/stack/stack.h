@@ -13,7 +13,7 @@ struct stack;
 
 
 /// Dynamically allocates memory for a stack
-struct stack *create(int capacity);
+struct stack *create();
 
 /// Releases the stack's dynamically allocated memory
 void destroy(struct stack *s);
@@ -34,7 +34,7 @@ size_t size(struct stack *s);
 bool push(struct stack *s, Item i);
 
 /// Pops an item from the top of the stack
-Item *pop(struct stack *s);
+Item pop(struct stack *s);
 
 
 #endif // STACK_H

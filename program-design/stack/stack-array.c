@@ -1,20 +1,23 @@
 #include "stack.h"
 
+#define CAPACITY 64
+
 struct stack
 {
 	Item *contents;
 	int top;
 	int capacity;
+	bool error;
 };
 
 
-struct stack *create(int capacity)
+struct stack *create()
 {
 	struct stack *s = malloc(sizeof(struct stack));
 	if (s == NULL)
 		return NULL;
 
-	s->contents = malloc(capacity * sizeof(Item));
+	s->contents = malloc(CAPACITY * sizeof(Item));
 	if (s->contents == NULL)
 	{
 		free(s);
@@ -22,7 +25,7 @@ struct stack *create(int capacity)
 	}
 
 	s->top = 0;
-	s->capacity = capacity;
+	s->capacity = CAPACITY;
 	return s;
 }
 
@@ -58,6 +61,12 @@ size_t size(struct stack *s)
 }
 
 
+bool is_error(struct stack *s)
+{
+	return s->error;
+}
+
+
 bool push(struct stack *s, Item i)
 {
 	if (is_full(s))
@@ -67,10 +76,14 @@ bool push(struct stack *s, Item i)
 }
 
 
-Item *pop(struct stack *s)
+Item pop(struct stack *s)
 {
+	Item data;
 	if (is_empty(s))
-		return NULL;
+	{
+		s->error = true;
+		return data;
+	}
 
-	return &(s->contents[--(s->top)]);
+	return s->contents[--(s->top)];
 }
