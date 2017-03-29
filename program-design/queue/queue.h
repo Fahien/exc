@@ -10,7 +10,7 @@ struct queue;
 
 
 /// Dynamically allocates memory for a queue
-struct queue *create(size_t capacity);
+struct queue *create();
 
 /// Releases the queue's dynamically allocated memory
 void destroy(struct queue *q);
@@ -27,17 +27,20 @@ bool is_full(struct queue *q);
 /// Returns the size of the queue
 size_t size(struct queue *q);
 
+/// Tests whether an error has occurred
+bool is_error(struct queue *q);
+
 /// Inserts an item at the end of the queue
 bool enqueue(struct queue *q, Item i);
 
 /// Removes an item from the beginning of the queue
-Item *dequeue(struct queue *q);
+Item dequeue(struct queue *q);
 
 /// Returns the first item in the queue
-Item *head(struct queue *q);
+Item head(struct queue *q);
 
 /// Returns the last item in the queue
-Item *tail(struct queue *q);
+Item tail(struct queue *q);
 
 
 #endif // QUEUE_H

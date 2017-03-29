@@ -30,6 +30,9 @@ bool is_full(struct stack *s);
 /// Returns the size of the stack
 size_t size(struct stack *s);
 
+/// Tests whether an error has occurred
+bool is_error(struct stack *s);
+
 /// Pushes an item on top of the stack
 bool push(struct stack *s, Item i);
 
