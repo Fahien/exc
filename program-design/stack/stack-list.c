@@ -82,15 +82,25 @@ Item pop(struct stack *s)
 {
 	Item data;
 	if (is_empty(s))
-	{
 		s->error = true;
-		return data;
+	else
+	{
+		struct node *top = s->top;
+		s->top = top->next;
+		data = top->data;
+		free(top);
+		--s->size;
 	}
+	return data;
+}
 
-	struct node *top = s->top;
-	s->top = top->next;
-	data = top->data;
-	free(top);
-	--s->size;
+
+Item peek(struct stack *s)
+{
+	Item data;
+	if (is_empty(s))
+		s->error = true;
+	else
+		data = s->top->data;
 	return data;
 }

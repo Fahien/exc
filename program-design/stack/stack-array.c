@@ -1,6 +1,7 @@
+#include <string.h>
 #include "stack.h"
 
-#define CAPACITY 64
+#define CAPACITY 4
 
 struct stack
 {
@@ -67,10 +68,25 @@ bool is_error(struct stack *s)
 }
 
 
+void scale(struct stack *s)
+{
+	// Double capacity
+	size_t new_capacity = s->capacity * 2;
+	// Allocate memory
+	Item *new_contents = malloc(new_capacity * sizeof(Item));
+	// Move contents
+	memmove(new_contents, s->contents, s->capacity * sizeof(Item));
+	// Update struct
+	free(s->contents);
+	s->contents = new_contents;
+	s->capacity = new_capacity;
+}
+
+
 bool push(struct stack *s, Item i)
 {
 	if (is_full(s))
-		return false;
+		scale(s);
 	s->contents[(s->top)++] = i;
 	return true;
 }
@@ -80,10 +96,19 @@ Item pop(struct stack *s)
 {
 	Item data;
 	if (is_empty(s))
-	{
 		s->error = true;
-		return data;
-	}
+	else
+		data = s->contents[--(s->top)];
+	return data;
+}
 
-	return s->contents[--(s->top)];
+
+Item peek(struct stack *s)
+{
+	Item data;
+	if (is_empty(s))
+		s->error = true;
+	else
+		data = s->contents[s->top - 1];
+	return data;
 }

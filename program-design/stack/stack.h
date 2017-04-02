@@ -39,5 +39,8 @@ bool push(struct stack *s, Item i);
 /// Pops an item from the top of the stack
 Item pop(struct stack *s);
 
+/// Peeks the item from the top of the stack
+Item peek(struct stack *s);
+
 
 #endif // STACK_H

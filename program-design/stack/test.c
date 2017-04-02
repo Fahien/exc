@@ -19,6 +19,12 @@ int main(void)
 
 	if (is_empty(s))
 		printf("The stack is empty\n");
+
+	for (int i = 0; i < 16; ++i)
+		push(s, i);
+	while (!is_empty(s))
+		printf("Popped from the stack: %d\n", pop(s));
+
 	destroy(s);
 
 	return EXIT_SUCCESS;
